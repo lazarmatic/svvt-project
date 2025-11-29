@@ -42,6 +42,7 @@ public class NavigationTests {
     @BeforeEach
     public void setUpEach() {
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        System.out.println("\n---- NEW TEST CASE ----");
     }
 
     @AfterAll
@@ -155,21 +156,20 @@ public class NavigationTests {
         System.out.println("Total links tested: " + linkHrefs.size());
         System.out.println("Successful: " + successCount);
         System.out.println("Failed: " + failCount);
+
+        assertEquals(linkHrefs.size(), successCount, "Not all links are working");
+
     }
     /**
      * TC8.3: Testing dropdown functionality
      * Expected: Dropdowns expand and navigate correctly
-     * This test verifies that:
-     * 1. Main category links have dropdown menus
-     * 2. Hovering/clicking reveals subcategories
-     * 3. Subcategory links are clickable and navigate correctly
+     * This test verifies that main category links have dropdown menus, hovering reveals subcategories
+     * and subcategory links are clickable and navigating correctly
      */
     @Test
     public void testDropdownFunctionality() throws InterruptedException {
         webDriver.get(baseUrl);
         Thread.sleep(3000);
-
-        System.out.println("--- Testing dropdown functionality ---\n");
 
         // Finding main category links that should have dropdowns
         // These are the top-level navigation items (Veliki kućanski aparati, Mali kućanski aparati...)
@@ -352,7 +352,7 @@ public class NavigationTests {
     }
 
     /**
-     * TC8.6: Verify Back and Forward button functionality
+     * TC8.6: Verifying back and forward button functionality
      * Expected: Browser back and forward buttons working correctly
      */
     @Test
